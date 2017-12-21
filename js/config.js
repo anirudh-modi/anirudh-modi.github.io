@@ -1,0 +1,56 @@
+window.config = {
+  "levels":
+  [
+    {
+      "lv":0,
+      "label":"Easy",
+      "gridSize":
+      {
+        "row":4,
+        "column":4
+      },
+      "flipSpeed":
+      {
+        //Time in milliseconds
+        "min":900,
+        "max":1800
+      },
+      //The number of colored cell which can be filpped, 1 = black, 2 = black and green, 3 = black and green and red
+      "multiColoredFlips":1,
+      //can multiple cells be flipped at a given time
+      "multiCellFlips":false
+    },
+    {
+      "lv":1,
+      "label":"Medium",
+      "gridSize":
+      {
+        "row":6,
+        "column":6
+      },
+      "flipSpeed":
+      {
+        "min":700,
+        "max":1500
+      },
+      "multiColoredFlips":2,
+      "multiCellFlips":false
+    },
+    {
+      "lv":2,
+      "label":"Hard",
+      "gridSize":
+      {
+        "row":8,
+        "column":8
+      },
+      "flipSpeed":
+      {
+        "min":500,
+        "max":1200
+      },
+      "multiColoredFlips":3,
+      "multiCellFlips":true
+    }
+  ]
+};

@@ -1,0 +1,293 @@
+*
+{
+    margin:0px;
+    padding:0px;
+    font-family: monospace;
+}
+
+.root
+{
+    text-align: center;
+    position: absolute;
+    box-sizing: content-box;
+    margin: auto;
+    left: 0px;
+    right: 0px;
+    padding-bottom: 20px;
+    bottom: 0px;
+    top: 0px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.cellRowContainer
+{
+    font-size: 0;
+}
+.gameTitle
+{
+    background: white;
+    height: 35px;
+    line-height: 35px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 19px;
+}
+.actionContainer
+{
+    background: #263238;
+    position:relative;
+    width:100%;
+    height:40px;
+    padding:10px 5px 0px 0px;
+    width: calc(100% - 5px);
+}
+.scoreCard
+{
+    display: inline-block;
+    padding: 0px 12px;
+    height: 30px;
+    line-height: 30px;
+    /* width: 100px; */
+    border-radius: 4px;
+    /* margin-left: -4px; */
+    /* border: 2px solid rgba(0, 150, 136, 0.58); */
+    margin-right: 20px;
+    position: absolute;
+    left: 10px;
+    /* font-size: 13px; */
+    background: rgb(57, 232, 160);
+    color:rgba(0, 0, 0, 0.59);
+    cursor: default;
+}
+
+.reset
+{
+    display: inline-block;
+    padding: 0px 10px;
+    height: 30px;
+    line-height: 30px;
+    position: absolute;
+    right: 10px;
+    box-shadow: 0px 0px 6px -2px black;
+    border-radius: 4px;
+    background: #2196F3;
+    color: white;
+    cursor: pointer;
+}
+.cellContainer
+{
+    width: 40px;
+    height: 40px;
+    position: relative;
+    display: inline-block;
+    border-radius: 4px;
+    margin: 2px;
+    overflow: hidden;
+    box-shadow: 0px 0px 26px -2px black;
+}
+
+.cell
+{
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    //z-index: 1;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.visible
+{
+    z-index: 2;
+}
+.whiteCell
+{
+    background: white;
+}
+.yellowCell
+{
+    background: #ffe656;
+}
+.blackCell:active{
+    background:#3fe89f;
+}
+
+.gameContainer
+{
+    background: #263238;
+    overflow: hidden;
+    position: absolute;
+    margin: auto;
+    left: 0px;
+    right: 0;
+}
+.hidden
+{
+    transform: translateY(0px)!important;
+}
+.gameOver
+{
+    position: absolute;
+    transform: translateY(-100%);
+    z-index: 3;
+    width: calc(100% - 1px);
+    left:1px;
+    height: 100%;
+    text-align: center;
+    background: white;
+    box-sizing: border-box;
+    border: 1px solid;
+    transition-duration: 0.1s;
+    cursor: default;
+}
+
+
+.clicked
+{
+    background: #3fe89f;
+}
+
+
+.dialog
+{
+    width: 100%;
+    height: 270px;
+    position: absolute;
+    top: 0px;
+    background: #253238;
+    z-index: 3;
+    transition-duration: 0.3s;
+}
+
+.levelContainer
+{
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    margin: auto;
+    max-height: 140px;
+    text-align: center;
+    display: inline-block;
+    max-width: 250px;
+    left: 0px;
+    right: 0px;
+}
+
+.dialogContentContainer
+{
+    height: calc(100% - 36px);
+    position: relative;
+}
+
+.level
+{
+    padding: 0px 10px;
+    background: #ffe81b;
+    margin: 5px 0px;
+    line-height: 40px;
+    height: 40px;
+    cursor:pointer;
+}
+
+.hide
+{
+    display: none;
+}
+
+.show
+{
+    display: block;
+}
+.intialText
+{
+    display: inline-block;
+    color:white;
+    height: 30px;
+}
+.absoluteCenter
+{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    right: 0;
+    margin: auto;
+}
+
+.zindex5
+{
+    z-index:5;
+}
+
+.blackText
+{
+    color:black!important;
+}
+.colorWhite
+{
+    color:white!important;
+}
+
+.greenCell
+{
+    background: #3ee8a0;
+}
+
+.redCell
+{
+    background: #ff6161;
+}
+
+.grid
+{
+    padding: 15px 0px;
+}
+
+.rotator
+{
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    right: 30px;
+    top: 7px;
+    background: #3ee8a0;
+}
+.rotatorLeft
+{
+    right: calc(50% + 80px)!important;
+    animation: rotateLeft 1s;
+    animation-iteration-count: infinite;
+}
+
+.rotatorRight
+{
+    right: calc(50% - 100px)!important;
+    animation: rotateRight 1s;
+    animation-iteration-count: infinite;
+}
+
+.titleCO
+{
+    display: inline-block;
+    height: 100%;
+    background: white;
+    z-index: 2;
+    position: relative;
+}
+@keyframes rotateLeft {
+    0%{transform: rotate(0deg);background:#3ee8a0;}
+    25%{background:#00bfff;transform: translateX(20px);}
+    50%{transform: rotate(180deg);background: #ffe500;}
+    75%{background:#7f00ff;transform: translateX(60px);}
+    100%{transform: rotate(360deg);background:#3ee8a0;}
+}
+
+@keyframes rotateRight {
+    0%{transform: rotate(0deg);background:#3ee8a0;}
+    25%{background:#00bfff;transform: translateX(-20px);}
+    50%{transform: rotate(180deg);background: #ffe500;}
+    75%{background:#7f00ff;transform: translateX(-60px);}
+    100%{transform: rotate(360deg);background:#3ee8a0;}
+}
+
