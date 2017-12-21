@@ -252,7 +252,7 @@ GameControllerJs.prototype.createGame = function()
         self.createActionsForGame();
 
         let scriptTag = createDynamicElement('script',{
-            'src':'../js/Game.js',
+            'src':'./js/Game.js',
             'type':'text/javascript'
         });
 
