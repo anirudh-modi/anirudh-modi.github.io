@@ -262,37 +262,29 @@ Game.prototype.calculateAndFlipXToWhite = function()
         document.getElementById('grid').removeEventListener('click',self.handleClickOnGrid);
     }
 
-    setTimeout(function()
+    flippedCellDom.innerHTML = '';
+
+    cellsList.whiteCell.classList.add('visible');
+
+    flippedCellDom.classList.remove('visible');
+
+    flippedCellDom.removeAttribute('isClicked');
+
+    self.flippedCell = null;
+
+    self.cellIdBeingFlipped = null;
+
+    if(!isGameOver)
     {
-        "use strict";
-
-        if(self.alive)
+        self.timeoutForFlippingWhiteToX = setTimeout(function()
         {
-            flippedCellDom.innerHTML = '';
-
-            cellsList.whiteCell.classList.add('visible');
-
-            flippedCellDom.classList.remove('visible');
-
-            flippedCellDom.removeAttribute('isClicked');
-
-            self.flippedCell = null;
-
-            self.cellIdBeingFlipped = null;
-
-            if(!isGameOver)
-            {
-                self.timeoutForFlippingWhiteToX = setTimeout(function()
-                {
-                    self.gatherRandomCellAndFlip();
-                },0);
-            }
-            else
-            {
-                self.setGameOver();
-            }
-        }
-    },150)
+            self.gatherRandomCellAndFlip();
+        },0);
+    }
+    else
+    {
+        self.setGameOver();
+    }
 };
 
 Game.prototype.setGameOver = function()
