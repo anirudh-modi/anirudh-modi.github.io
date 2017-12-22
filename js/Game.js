@@ -9,6 +9,8 @@ function Game(config)
 
     self.score = 0;
 
+    self.alive = true;
+
     self.gameContainer = document.getElementById('gameContainer');
 
     self.scoreElement = document.getElementById('scoreCard');
@@ -25,21 +27,41 @@ function Game(config)
 
     self.cellIdBeingFlipped = null;
 
+    self.configLevel = self.config.lv;
+
     self.arrayOfCells = ['yellowCell','greenCell','redCell'];
+
+    self.plusOneTextNode = document.createTextNode('+1');
+
+    self.plusThreeTextNode = document.createTextNode('+3');
+
+    self.minusOneTextNode = document.createTextNode('-1');
 
     self.handleClickOnGrid = function(event)
     {
         var targetElement = event.target;
 
-        if(targetElement.classList.contains(self.flippedCell))
+        if(self.alive && targetElement.classList.contains(self.flippedCell))
         {
+            console.time('start')
+
+            clearTimeout(self.timeoutForFlippingXToWhite);
+
             if(!targetElement.getAttribute('isClicked'))
             {
                 targetElement.setAttribute('isClicked','1');
 
-                if(self.timeoutForFlippingXToWhite)
+                if(self.flippedCell=='greenCell')
                 {
-                    clearTimeout(self.timeoutForFlippingXToWhite);
+                    targetElement.appendChild(self.plusThreeTextNode);
+                }
+                else if(self.flippedCell==='redCell')
+                {
+                    targetElement.appendChild(self.minusOneTextNode);
+                }
+                else
+                {
+                    targetElement.appendChild(self.plusOneTextNode);
                 }
 
                 self.calculateAndFlipXToWhite();
@@ -53,7 +75,7 @@ function Game(config)
 
     self.resetScore();
 
-    self.gatherRandomCellAndFlip();
+    self.gatherRandomCellAndFlip(100);
 }
 
 /**
@@ -68,7 +90,7 @@ function Game(config)
  * and it will then call the procedure to flip the white cell to the
  * desired colored cell.
  */
-Game.prototype.gatherRandomCellAndFlip = function()
+Game.prototype.gatherRandomCellAndFlip = function(timeToFlip)
 {
     "use strict";
 
@@ -78,17 +100,17 @@ Game.prototype.gatherRandomCellAndFlip = function()
 
     var innerCells = self.getInnerCells('cell'+self.cellIdBeingFlipped);
 
-    if(self.config.lv==0)
+    if(self.configLevel==0)
     {
-        self.flipCellFromWhiteToX(innerCells,'yellowCell');
+        self.flipCellFromWhiteToX(innerCells,'yellowCell',timeToFlip);
     }
-    else if(self.config.lv==1)
+    else if(self.configLevel==1)
     {
-        self.flipCellFromWhiteToX(innerCells, self.arrayOfCells[self.getRandomInt(0, 1)]);
+        self.flipCellFromWhiteToX(innerCells, self.arrayOfCells[self.getRandomInt(0, 1)],timeToFlip);
     }
     else
     {
-        self.flipCellFromWhiteToX(innerCells, self.arrayOfCells[self.getRandomInt(0, 2)]);
+        self.flipCellFromWhiteToX(innerCells, self.arrayOfCells[self.getRandomInt(0, 2)],timeToFlip);
     }
 };
 
@@ -106,25 +128,52 @@ Game.prototype.gatherRandomCellAndFlip = function()
  * @param cellsList
  * @param colorToFlip
  */
-Game.prototype.flipCellFromWhiteToX = function(cellsList, colorToFlip)
+Game.prototype.flipCellFromWhiteToX = function(cellsList, colorToFlip, initialTimeToFlip)
 {
     "use strict";
 
     var self = this;
 
-    self.flippedCell = colorToFlip;
-
-    cellsList.whiteCell.classList.remove('visible');
-
-    cellsList[colorToFlip].classList.add('visible');
-
-    var timeToFlip = self.getRandomInt(self.config.flipSpeed.min,self.config.flipSpeed.max);
-
-    self.timeoutForFlippingXToWhite = setTimeout(function()
+    if(initialTimeToFlip)
     {
-        self.calculateAndFlipXToWhite();
+        self.timeoutForFlippingWhiteToXIntial = setTimeout(function()
+        {
+            self.flippedCell = colorToFlip;
 
-    },timeToFlip);
+            cellsList.whiteCell.classList.remove('visible');
+
+            cellsList[colorToFlip].classList.add('visible');
+
+            var timeToFlip = self.getRandomInt(self.config.flipSpeed.min,self.config.flipSpeed.max);
+
+            self.timeoutForFlippingXToWhite = setTimeout(function()
+            {
+                if(self.alive)
+                {
+                    self.calculateAndFlipXToWhite();
+                }
+            },timeToFlip);
+
+        },initialTimeToFlip);
+    }
+    else
+    {
+        self.flippedCell = colorToFlip;
+
+        cellsList.whiteCell.classList.remove('visible');
+
+        cellsList[colorToFlip].classList.add('visible');
+
+        var timeToFlip = self.getRandomInt(self.config.flipSpeed.min,self.config.flipSpeed.max);
+
+        self.timeoutForFlippingXToWhite = setTimeout(function()
+        {
+            if(self.alive)
+            {
+                self.calculateAndFlipXToWhite();
+            }
+        },timeToFlip);
+    }
 };
 
 Game.prototype.calculateAndFlipXToWhite = function()
@@ -135,9 +184,13 @@ Game.prototype.calculateAndFlipXToWhite = function()
 
     var isGameOver = false;
 
-    if(self.config.lv==0)
+    let flippedCellDom = cellsList[self.flippedCell];
+
+    let isFlippedDomClicked = flippedCellDom.getAttribute('isClicked');
+
+    if(self.configLevel==0)
     {
-        if(cellsList.yellowCell.getAttribute('isClicked'))
+        if(isFlippedDomClicked)
         {
             self.setScore(true,1);
         }
@@ -148,18 +201,18 @@ Game.prototype.calculateAndFlipXToWhite = function()
             self.setScore(false,1);
         }
     }
-    else if(self.config.lv==1)
+    else if(self.configLevel==1)
     {
         if(self.flippedCell=='greenCell')
         {
-            if(cellsList.greenCell.getAttribute('isClicked'))
+            if(isFlippedDomClicked)
             {
                 self.setScore(true,3);
             }
         }
         else
         {
-            if(cellsList.yellowCell.getAttribute('isClicked'))
+            if(isFlippedDomClicked)
             {
                 self.setScore(true,1);
             }
@@ -175,14 +228,14 @@ Game.prototype.calculateAndFlipXToWhite = function()
     {
         if(self.flippedCell=='greenCell')
         {
-            if(cellsList.greenCell.getAttribute('isClicked'))
+            if(isFlippedDomClicked)
             {
                 self.setScore(true,3);
             }
         }
         else if(self.flippedCell=='redCell')
         {
-            if(cellsList.redCell.getAttribute('isClicked'))
+            if(isFlippedDomClicked)
             {
                 isGameOver = true;
 
@@ -191,7 +244,7 @@ Game.prototype.calculateAndFlipXToWhite = function()
         }
         else
         {
-            if(cellsList.yellowCell.getAttribute('isClicked'))
+            if(isFlippedDomClicked)
             {
                 self.setScore(true,1);
             }
@@ -204,31 +257,51 @@ Game.prototype.calculateAndFlipXToWhite = function()
         }
     }
 
-    cellsList.whiteCell.classList.add('visible');
-
-    cellsList[self.flippedCell].classList.remove('visible');
-
-    cellsList[self.flippedCell].removeAttribute('isClicked');
-
-    self.flippedCell = null;
-
-    //self.cellIdBeingFlipped = null;
-
-    if(!isGameOver)
+    if(isGameOver)
     {
-        self.timeoutForFlippingWhiteToX = setTimeout(function()
+        document.getElementById('grid').removeEventListener('click',self.handleClickOnGrid);
+    }
+
+    setTimeout(function()
+    {
+        "use strict";
+
+        if(self.alive)
         {
-            self.gatherRandomCellAndFlip();
-        },0);
-    }
-    else
-    {
-        self.setGameOver();
-    }
+            flippedCellDom.innerHTML = '';
+
+            cellsList.whiteCell.classList.add('visible');
+
+            flippedCellDom.classList.remove('visible');
+
+            flippedCellDom.removeAttribute('isClicked');
+
+            self.flippedCell = null;
+
+            self.cellIdBeingFlipped = null;
+
+            if(!isGameOver)
+            {
+                self.timeoutForFlippingWhiteToX = setTimeout(function()
+                {
+                    self.gatherRandomCellAndFlip();
+                },0);
+            }
+            else
+            {
+                self.setGameOver();
+            }
+        }
+    },100)
 };
 
 Game.prototype.setGameOver = function()
 {
+
+    var self = this;
+
+    self.alive = false;
+
     var gameOver = document.getElementById('gameover');
 
     gameOver.classList.remove('hidden');
@@ -306,7 +379,8 @@ Game.prototype.createGameGrid = function()
     let docFrag = document.createDocumentFragment();
 
     let grid = createDynamicElement('div',{
-      'classList':['grid']
+      'classList':['grid'],
+        'id':'grid'
     });
 
     grid.addEventListener('click',self.handleClickOnGrid);
