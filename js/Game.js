@@ -292,7 +292,7 @@ Game.prototype.calculateAndFlipXToWhite = function()
                 self.setGameOver();
             }
         }
-    },100)
+    },150)
 };
 
 Game.prototype.setGameOver = function()

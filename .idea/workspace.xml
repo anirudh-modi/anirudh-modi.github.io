@@ -54,8 +54,8 @@
       <file leaf-file-name="Game.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/Game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.55128205">
-              <caret line="137" column="5" selection-start-line="137" selection-start-column="5" selection-end-line="137" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.6367521">
+              <caret line="294" column="8" selection-start-line="294" selection-start-column="8" selection-end-line="294" selection-end-column="8" />
               <folding>
                 <element signature="n#!!doc;n#Game#0" expanded="false" />
                 <element signature="e#890#1772#0" expanded="false" />
@@ -66,7 +66,6 @@
                 <element signature="e#1604#1692#0" expanded="false" />
                 <element signature="e#1897#2374#0" expanded="false" />
                 <element signature="e#3010#3542#0" expanded="false" />
-                <element signature="e#4859#7294#0" expanded="false" />
                 <element signature="e#5145#5340#0" expanded="false" />
                 <element signature="e#5187#5233#0" expanded="false" />
                 <element signature="e#5255#5334#0" expanded="false" />
@@ -402,7 +401,6 @@
             <element signature="e#1604#1692#0" expanded="false" />
             <element signature="e#1897#2374#0" expanded="false" />
             <element signature="e#3010#3542#0" expanded="false" />
-            <element signature="e#4859#7294#0" expanded="false" />
             <element signature="e#5145#5340#0" expanded="false" />
             <element signature="e#5187#5233#0" expanded="false" />
             <element signature="e#5255#5334#0" expanded="false" />
@@ -510,7 +508,6 @@
             <element signature="e#1604#1692#0" expanded="false" />
             <element signature="e#1897#2374#0" expanded="false" />
             <element signature="e#3010#3542#0" expanded="false" />
-            <element signature="e#4859#7294#0" expanded="false" />
             <element signature="e#5145#5340#0" expanded="false" />
             <element signature="e#5187#5233#0" expanded="false" />
             <element signature="e#5255#5334#0" expanded="false" />
@@ -618,7 +615,6 @@
             <element signature="e#1604#1692#0" expanded="false" />
             <element signature="e#1897#2374#0" expanded="false" />
             <element signature="e#3010#3542#0" expanded="false" />
-            <element signature="e#4859#7294#0" expanded="false" />
             <element signature="e#5145#5340#0" expanded="false" />
             <element signature="e#5187#5233#0" expanded="false" />
             <element signature="e#5255#5334#0" expanded="false" />
@@ -717,7 +713,6 @@
             <element signature="e#1604#1692#0" expanded="false" />
             <element signature="e#1897#2374#0" expanded="false" />
             <element signature="e#3010#3542#0" expanded="false" />
-            <element signature="e#4859#7294#0" expanded="false" />
             <element signature="e#5145#5340#0" expanded="false" />
             <element signature="e#5187#5233#0" expanded="false" />
             <element signature="e#5255#5334#0" expanded="false" />
@@ -841,8 +836,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/Game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.55128205">
-          <caret line="137" column="5" selection-start-line="137" selection-start-column="5" selection-end-line="137" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.6367521">
+          <caret line="294" column="8" selection-start-line="294" selection-start-column="8" selection-end-line="294" selection-end-column="8" />
           <folding>
             <element signature="n#!!doc;n#Game#0" expanded="false" />
             <element signature="e#890#1772#0" expanded="false" />
@@ -853,7 +848,6 @@
             <element signature="e#1604#1692#0" expanded="false" />
             <element signature="e#1897#2374#0" expanded="false" />
             <element signature="e#3010#3542#0" expanded="false" />
-            <element signature="e#4859#7294#0" expanded="false" />
             <element signature="e#5145#5340#0" expanded="false" />
             <element signature="e#5187#5233#0" expanded="false" />
             <element signature="e#5255#5334#0" expanded="false" />
